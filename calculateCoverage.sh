@@ -7,4 +7,6 @@
 #SBATCH -o calcCov-%j.out
 #SBATCH -e calcCov-%j.error
 
-java -jar gatk/dist/GenomeAnalysisTK.jar -T DepthOfCoverage -R [reference] -I [input] -o [output].coverage
+# --omitDepthOutputAtEachBase option can be removed, but will result in very large output file
+# if run on e.g. full human genome.
+java -jar gatk/dist/GenomeAnalysisTK.jar -T DepthOfCoverage -R [reference] -I [input] -o [output].coverage --omitDepthOutputAtEachBase
